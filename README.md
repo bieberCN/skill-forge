@@ -74,7 +74,8 @@ skill-forge/
 ├── templates/
 │   └── skill/                        # 新 Skill 的完整基础模板
 └── skills/
-    └── demo-market-snapshot/         # 可离线运行的示例 Skill
+    ├── demo-market-snapshot/         # 基础离线示例
+    └── rfq-routing-simulator/        # 报价路由与结算状态模拟器
 ```
 
 每个生成出来的 Skill 包含：
@@ -137,6 +138,10 @@ new-skill <name>             Skill 名称，只允许小写字母、数字和短
 6. 更新 `payload-schema.json`，确保下游能够稳定消费输出。
 7. 增加 `evals/evals.json` 用例，并运行统一运行器和评测器。
 8. 在 `review.md` 中记录 MCP 覆盖率、数据缺口、降级行为和已知限制。
+
+### 交易基础设施示例
+
+`skills/rfq-routing-simulator/` 展示一个安全的 RFQ 后端流程：比较多个流动性源的价格、手续费、滑点和延迟，过滤无效报价，选择最佳有效价格，并输出 `REQUESTED → QUOTED → ROUTED` 状态审计。它不连接钱包、不持有私钥、不提交链上交易，适合作为真实交易系统的架构演示和回归测试样例。
 
 ### 输出契约
 
@@ -238,6 +243,10 @@ python3 skills/demo-market-snapshot/scripts/process.py \
 6. Keep the downstream output stable through `payload-schema.json`.
 7. Add evaluation cases and run the unified runner and evaluator.
 8. Record coverage, data gaps, fallbacks, and limitations in `review.md`.
+
+### Trading-infrastructure example
+
+`skills/rfq-routing-simulator/` demonstrates a safe RFQ backend flow: normalize quotes from multiple liquidity sources, account for fees, slippage, and latency, reject invalid or expired quotes, select the best effective price, and emit a `REQUESTED → QUOTED → ROUTED` audit trail. It never connects to a wallet, holds keys, or submits an on-chain transaction.
 
 ### License
 

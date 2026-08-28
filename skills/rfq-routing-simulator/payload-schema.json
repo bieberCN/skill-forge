@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["subject", "headline", "route", "quotes", "metrics", "data_gaps", "audit", "disclaimer"],
+  "properties": {
+    "subject": {"type": "object"},
+    "headline": {"type": "object"},
+    "route": {"type": "object"},
+    "quotes": {"type": "array"},
+    "metrics": {"type": "array"},
+    "data_gaps": {"type": "array"},
+    "audit": {"type": "array"},
+    "disclaimer": {"type": "string"}
+  }
+}

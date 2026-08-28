@@ -1,0 +1,8 @@
+{
+  "params": {"side": "buy", "asset": "BTC", "amount": 10000},
+  "quotes": [
+    {"provider": "liquidity-a", "price": 65000, "fee_bps": 8, "slippage_bps": 3, "latency_ms": 42, "status": "live"},
+    {"provider": "liquidity-b", "price": 64990, "fee_bps": 14, "slippage_bps": 6, "latency_ms": 81, "status": "live"},
+    {"provider": "liquidity-c", "price": 64800, "fee_bps": 10, "slippage_bps": 5, "latency_ms": 120, "status": "expired"}
+  ]
+}

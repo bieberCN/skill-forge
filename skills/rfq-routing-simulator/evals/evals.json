@@ -1,0 +1,1 @@
+{"cases":[{"name":"select-lowest-effective-buy-quote","input":"fixtures/sample-input.json","assert":["subject","headline","route","quotes","metrics","audit","disclaimer"]}]}

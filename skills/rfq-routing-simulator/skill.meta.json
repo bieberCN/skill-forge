@@ -1,0 +1,18 @@
+{
+  "name": "rfq-routing-simulator",
+  "display_name": "RFQ Routing Simulator",
+  "domain": "trading-infrastructure",
+  "version": "0.1.0",
+  "input_schema": {
+    "zh": {
+      "side": {"type": "select", "label": "方向", "default": "buy", "options": ["buy", "sell"], "required": true},
+      "asset": {"type": "string", "label": "资产", "default": "BTC", "required": true},
+      "amount": {"type": "number", "label": "名义金额", "default": 10000, "required": true}
+    },
+    "en": {
+      "side": {"type": "select", "label": "Side", "default": "buy", "options": ["buy", "sell"], "required": true},
+      "asset": {"type": "string", "label": "Asset", "default": "BTC", "required": true},
+      "amount": {"type": "number", "label": "Notional amount", "default": 10000, "required": true}
+    }
+  }
+}

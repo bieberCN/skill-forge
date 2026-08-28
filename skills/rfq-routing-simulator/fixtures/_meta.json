@@ -1,0 +1,1 @@
+{"fixture_version":"0.1.0","mcp_schema_version":"offline-simulator","generated_at":"2026-08-28T00:00:00Z","expires_at":"2026-11-28T00:00:00Z","fixtures":[{"file":"sample-input.json","scenario":"live-and-expired-quotes"}]}
