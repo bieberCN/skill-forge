@@ -1,0 +1,16 @@
+{
+  "name": "{{NAME}}",
+  "display_name": "{{TITLE}}",
+  "domain": "{{DOMAIN}}",
+  "version": "0.1.0",
+  "input_schema": {
+    "zh": {
+      "symbol": {"type": "select", "label": "标的", "default": "BTC", "options": ["BTC", "ETH"], "required": true},
+      "lookback_days": {"type": "select", "label": "回看天数", "default": 30, "options": [7, 30, 90], "required": false}
+    },
+    "en": {
+      "symbol": {"type": "select", "label": "Symbol", "default": "BTC", "options": ["BTC", "ETH"], "required": true},
+      "lookback_days": {"type": "select", "label": "Lookback days", "default": 30, "options": [7, 30, 90], "required": false}
+    }
+  }
+}

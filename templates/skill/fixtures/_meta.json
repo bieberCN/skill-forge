@@ -1,0 +1,7 @@
+{
+  "fixture_version": "0.1.0",
+  "mcp_schema_version": "replace-me",
+  "generated_at": "replace-me",
+  "expires_at": "replace-me",
+  "fixtures": [{"file": "sample-input.json", "scenario": "baseline"}]
+}

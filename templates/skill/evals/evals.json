@@ -1,0 +1,5 @@
+{
+  "cases": [
+    {"name": "baseline", "input": "fixtures/sample-input.json", "assert": ["subject", "headline", "metrics", "disclaimer"]}
+  ]
+}

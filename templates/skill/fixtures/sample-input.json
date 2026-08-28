@@ -1,0 +1,4 @@
+{
+  "params": {"symbol": "BTC", "lookback_days": 30},
+  "raw": {"value": 42}
+}
