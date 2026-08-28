@@ -1,6 +1,6 @@
 # Skill Forge
 
-一个用于快速生成和校验 AI Agent Skill 的个人模板库。它借鉴 `antseer/test_skills` 的核心模式，但把重点收敛到可维护的脚手架：
+一个用于快速生成和校验 AI Agent Skill 的个人模板库。但把重点收敛到可维护的脚手架：
 
 ```text
 SKILL.md → MCP/外部数据 → scripts/process.py → payload-schema.json → 前端/Agent
