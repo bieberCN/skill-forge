@@ -62,6 +62,7 @@ skill-forge/
 ├── core/                             # 运行时与输入/输出契约
 ├── connectors/                       # Fixture、HTTP 等数据连接器
 ├── evaluation/                       # 离线评测执行器
+├── docs/design/                      # 持续设计文档与决策记录
 ├── bin/
 │   ├── new-skill                     # 一键生成命令
 │   └── run-skill                     # 统一运行和校验入口
@@ -142,6 +143,8 @@ new-skill <name>             Skill 名称，只允许小写字母、数字和短
 ### 交易基础设施示例
 
 `skills/rfq-routing-simulator/` 展示一个安全的 RFQ 后端流程：比较多个流动性源的价格、手续费、滑点和延迟，过滤无效报价，选择最佳有效价格，并输出 `REQUESTED → QUOTED → ROUTED` 状态审计。它不连接钱包、不持有私钥、不提交链上交易，适合作为真实交易系统的架构演示和回归测试样例。
+
+对应的 Dashboard 视觉稿位于 `skills/rfq-routing-simulator/rfq-routing-simulator.html`，持续设计记录位于 `docs/design/`，包括产品流程、视觉规范、架构决策和路线图。
 
 ### 输出契约
 
@@ -247,6 +250,8 @@ python3 skills/demo-market-snapshot/scripts/process.py \
 ### Trading-infrastructure example
 
 `skills/rfq-routing-simulator/` demonstrates a safe RFQ backend flow: normalize quotes from multiple liquidity sources, account for fees, slippage, and latency, reject invalid or expired quotes, select the best effective price, and emit a `REQUESTED → QUOTED → ROUTED` audit trail. It never connects to a wallet, holds keys, or submits an on-chain transaction.
+
+The visual dashboard is at `skills/rfq-routing-simulator/rfq-routing-simulator.html`. Living product-design records are maintained in `docs/design/`, covering product flow, visual tokens, architecture decisions, and the roadmap.
 
 ### License
 
