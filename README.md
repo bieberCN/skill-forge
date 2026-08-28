@@ -59,11 +59,18 @@ L4：结构化 JSON Payload
 ```text
 skill-forge/
 ├── README.md                         # 本文档，中英文项目说明
+├── core/                             # 运行时与输入/输出契约
+├── connectors/                       # Fixture、HTTP 等数据连接器
+├── evaluation/                       # 离线评测执行器
 ├── bin/
-│   └── new-skill                     # 一键生成命令
+│   ├── new-skill                     # 一键生成命令
+│   └── run-skill                     # 统一运行和校验入口
 ├── scripts/
 │   ├── create_skill.py               # 从模板生成 Skill
-│   └── validate_skill.py             # 校验 Skill 文件和 JSON 契约
+│   ├── validate_skill.py             # 校验 Skill 文件和 JSON 契约
+│   ├── run_skill.py                  # 运行时实现
+│   └── run_evals.py                  # 评测入口
+├── tests/                            # 框架冒烟测试
 ├── templates/
 │   └── skill/                        # 新 Skill 的完整基础模板
 └── skills/
@@ -98,6 +105,13 @@ cd skill-forge
 # 检查生成结果
 python3 scripts/validate_skill.py skills/market-snapshot
 
+# 通过统一运行器执行并校验输出
+./bin/run-skill skills/market-snapshot \
+  --input skills/market-snapshot/fixtures/sample-input.json
+
+# 运行评测用例
+PYTHONPATH=. python3 scripts/run_evals.py skills/market-snapshot
+
 # 运行示例 Skill
 python3 skills/demo-market-snapshot/scripts/process.py \
   < skills/demo-market-snapshot/fixtures/sample-input.json
@@ -117,11 +131,12 @@ new-skill <name>             Skill 名称，只允许小写字母、数字和短
 
 1. 修改 `skill.meta.json` 中的 `input_schema`，定义中英文参数、类型、默认值和选项。
 2. 在 `SKILL.md` 中同步参数说明、触发词、MCP 工具和失败处理方式。
-3. 在 `scripts/process.py` 中实现稳定、可测试的计算逻辑。
-4. 将真实数据快照或脱敏样本放入 `fixtures/`，不要把 Token、私钥和用户数据提交到仓库。
-5. 更新 `payload-schema.json`，确保下游能够稳定消费输出。
-6. 增加 `evals/evals.json` 用例，并运行校验器。
-7. 在 `review.md` 中记录 MCP 覆盖率、数据缺口、降级行为和已知限制。
+3. 在 `connectors/` 或外部适配层接入数据源；连接器只负责取数。
+4. 在 `scripts/process.py` 中实现稳定、可测试的计算逻辑。
+5. 将真实数据快照或脱敏样本放入 `fixtures/`，不要把 Token、私钥和用户数据提交到仓库。
+6. 更新 `payload-schema.json`，确保下游能够稳定消费输出。
+7. 增加 `evals/evals.json` 用例，并运行统一运行器和评测器。
+8. 在 `review.md` 中记录 MCP 覆盖率、数据缺口、降级行为和已知限制。
 
 ### 输出契约
 
@@ -217,11 +232,12 @@ python3 skills/demo-market-snapshot/scripts/process.py \
 
 1. Define bilingual parameters in `skill.meta.json`.
 2. Keep triggers, tools, workflow, and failure handling in `SKILL.md`.
-3. Put deterministic calculations in `scripts/process.py`.
-4. Store sanitized, reproducible inputs under `fixtures/`.
-5. Keep the downstream output stable through `payload-schema.json`.
-6. Add evaluation cases and run the validator.
-7. Record coverage, data gaps, fallbacks, and limitations in `review.md`.
+3. Add a connector for the data source; keep fetching separate from business calculations.
+4. Put deterministic calculations in `scripts/process.py`.
+5. Store sanitized, reproducible inputs under `fixtures/`.
+6. Keep the downstream output stable through `payload-schema.json`.
+7. Add evaluation cases and run the unified runner and evaluator.
+8. Record coverage, data gaps, fallbacks, and limitations in `review.md`.
 
 ### License
 
